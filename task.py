@@ -5,6 +5,6 @@ id_dict = dict()
 
 #変数wordは辞書内に登録されてる単語
 for number in range(len(dictionary)):
-    id_dict[dictionary[number]] = number + 1 #見出し語の最初の単語のIDを1に
+    id_dict[number+1] = dictionary[number] #見出し語の最初の単語のIDを1に
 
 print(id_dict)
