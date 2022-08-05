@@ -1,25 +1,24 @@
-
 import sys
 
 
 def main(args):
-    #辞書に単語を登録
-    dictionary = ['上手', '一時', '市場']
+    with open('dictionary-data.txt', 'r', encoding='utf-8') as f:
+        word_list = f.readlines()
 
+    #辞書の作成
     id_dict = dict()
-
     #変数wordは辞書内に登録されてる単語
-    for number in range(len(dictionary)):
-        id_dict[number+1] = dictionary[number] #見出し語の最初の単語のIDを1に
-
+    for i in range(len(word_list)):
+        word_list[i] = word_list[i].replace('\n', '')
+        kanji_tmp, hiragana_tmp = word_list[i].split(' ')
+        id_dict[i + 1] = {'kanji': kanji_tmp, 'hiragana': hiragana_tmp}
 
     #辞書の単語を出力
     if len(args) == 0:
-        for key in id_dict:
-            print(key, ":", id_dict[key])
-    else:
-        for id_args in args:
-            print(id_args, ":", id_dict[int(id_args)])
+        args = id_dict.keys()
+    for id_args in args:
+        print(id_args, ":", id_dict[int(id_args)]['kanji'],
+        id_dict[int(id_args)]['hiragana'])
 
 
 if __name__ == '__main__':
